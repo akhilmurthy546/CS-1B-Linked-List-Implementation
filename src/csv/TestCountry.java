@@ -7,7 +7,7 @@ import java.util.Scanner;
  *  Tests the Country class, which holds Indicator data for each year in 
  *  chronological order.
  *
- * @author Foothill College, [YOUR NAME HERE]
+ * @author Foothill College, [Akhil Murthy]
  */
 public class TestCountry
 {	
@@ -19,7 +19,6 @@ public class TestCountry
 	{
 		String countryNames = "";
 		int counter = 0;
-
 		for (int i = 0; i < countries.length; i++)
 		{
 			// Concatenates the name of countries
@@ -162,7 +161,8 @@ public class TestCountry
 		}
 		else if (selection == 2 || selection == 4)
 		{
-			// Note: alternatively we can set the selected indicator as SCHOOL_ENROLLMENT_SECONDARY
+			// Note: alternativel1
+			// y we can set the selected indicator as SCHOOL_ENROLLMENT_SECONDARY
 			selectedIndicator = IndicatorType.SCHOOL_ENROLLMENT_PRIMARY;
 			filenames = selection == 2 ? ENROLLMENT_INPUT_SHORT : ENROLLMENT_INPUT;
 		}
@@ -354,6 +354,10 @@ public class TestCountry
 		{
 			System.out.println(exc.getMessage());
 		}
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println(e.getMessage());
+		}
 
 		try
 		{
@@ -368,6 +372,44 @@ public class TestCountry
 		catch (IllegalArgumentException exc)
 		{
 			System.out.println(exc.getMessage());
+		}
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+		try
+		{
+			int countryNum = 1;
+			String countryName = countries[countryNum].getName();
+			int requestedStartYear = 1960;
+			int requestedEndYear = 2020;
+			System.out.printf("\nRequested enrollment period (%d to %d) for %s:\n", requestedStartYear, requestedEndYear, countryName);
+			requestedEnrollmentPeriod = countries[countryNum].getIndicatorForPeriod(requestedStartYear,requestedEndYear);
+			displayEnrollmentPeriod(countryName,requestedEnrollmentPeriod);
+		}
+		catch (IllegalArgumentException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+		try
+		{
+			int countryNum = -1;
+			String countryName = countries[countryNum].getName();
+			int requestedStartYear = 1960;
+			int requestedEndYear = 2010;
+			System.out.printf("\nRequested enrollment period (%d to %d) for %s:\n", requestedStartYear, requestedEndYear, countryName);
+			requestedEnrollmentPeriod = countries[countryNum].getIndicatorForPeriod(requestedStartYear,requestedEndYear);
+			displayEnrollmentPeriod(countryName,requestedEnrollmentPeriod);
+		}
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println(e.getMessage());
 		}
 
 		//

@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  *  Tests the CountryList class, which holds a linked list of CountryNode objects.
  *
- * @author Foothill College, [YOUR NAME HERE]
+ * @author Foothill College, [Akhil Murthy]
  */
 public class TestCountryList
 {	
@@ -56,7 +56,7 @@ public class TestCountryList
 		// TODO: Provide the String representation of the linked list by traversing
 		//       all the nodes. The result should be the data at each node.
 		System.out.println(selectedCountries.toString());
-		
+
 		System.out.println("Done with creating random linked list of countries.\n");
 		return selectedCountries;
 	}
@@ -217,7 +217,7 @@ public class TestCountryList
 	 * Tests the getIndicatorForPeriod() method of the Country class.
 	 * @param selectedCountryList  list of countries to search
 	 */
-	private static void testFindingIndicatorDataInList(CountryList selectedCountryList) 
+	private static void testFindingIndicatorDataInList(CountryList selectedCountryList)
 	{
 		System.out.printf("\nWhat is the index of the country you want data on? (Enter a index between 0 and %d)\n", 
 				selectedCountryList.size()-1);
@@ -499,8 +499,7 @@ public class TestCountryList
 		// What period are you interested in? (Enter [starting year],[end year].)
 		// 2010,2017
 		//         Country Name            2010             2011             2012             2013             2014             2015             2016             2017  
-		//        United States        (,86.70)         (,87.63)         (,87.33)         (,88.12)         (,88.90)         (,90.83)               ()               ()  
-
+		//        United States        (,86.70)         (,87.63)         (,87.33)         (,88.12)         (,88.90)         (,90.83)               ()               ()
 		//
 		// TODO: For full credit, include test cases for two different lists of different sizes. 
 		//       Your test case must show that you can:
@@ -510,6 +509,52 @@ public class TestCountryList
 		//       - get Indicator data for a period (Hint: Reuse your previous implementation).
 		//
 		// TODO: Test your implementation such that it can handle a variety of input files and Indicators.
+
+		try
+		{
+			Country search = new Country("Benin");
+			CountryList list = new CountryList();
+			Indicator[] test = search.getIndicatorForPeriod(2060,2017);
+			String output = "";
+			for (int i = 0; i < 9; i++)
+			{
+				list.add(countries[i]);
+			}
+			list.contains(search);
+
+			for (int i = 0; i < test.length; i++)
+			{
+				output += test[i];
+			}
+			System.out.println(output);
+		}
+		catch (NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+		try
+		{
+			Country search = new Country("Lenin");
+			CountryList list = new CountryList();
+			Indicator[] test = search.getIndicatorForPeriod(1960,2017);
+			String output = "";
+			for (int i = 0; i < 5; i++)
+			{
+				list.add(countries[i]);
+			}
+			list.contains(search);
+
+			for (int i = 0; i < test.length; i++)
+			{
+				output += test[i];
+			}
+			System.out.println(output);
+		}
+		catch (NullPointerException e)
+		{
+			System.out.println(e.getMessage());
+		}
 
 		System.out.println("\nDone with TestCountryList.\n");
 	}
