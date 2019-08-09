@@ -1,6 +1,36 @@
 FEEDBACK:
 
--20 Your project was not submitted to your repository.
+Accepted as on time.
 
+
+Good implementation of class CountryList getIndex() method. Consider adding
+   exception handling in case of invalid index request.
+   
+
+-0 Using the method call getIndicatorForYear() is decreases your application performance:
+      
+    public String toString()
+    {
+        String output = getName();
+        for(int i = 0; i < indicators.length; i++)
+        {
+            output += " " + getIndicatorForYear(indicators[i].getYear());
+        }
+    Consider instead relying on the toString() method of the overridden Indicators class:
+    For example:
+    
+    public String toString()
+    {
+        String output = getName();
+        for(int i = 0; i < indicators.length; i++)
+        {
+            output += " " + indicators[i];  // Note: Recall the String type is immutable
+
+    Better yet instead of String concatenation which is also computationally expensive
+    use a more flexible class such as StringBuilder.
+
+
+Good test cases which update your linked list.
+    
 -Bita.
 
